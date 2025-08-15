@@ -1,7 +1,7 @@
 # config.py
 import os
 # Токен бота (отримайте у @BotFather)
-BOT_TOKEN = "7937247505:AAH4qjGe5A5HoyV00S_LBdub4fdTgR_VWCM"
+BOT_TOKEN = "7937247505:AAGWOmV-wkdCmSIZXCiikuFo3bjBC4oGSSk"
 # Налаштування бази даних
 DATABASE_PATH = "bot.db"
 # Налаштування карточок

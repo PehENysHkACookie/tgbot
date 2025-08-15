@@ -17,6 +17,21 @@ db = Database()
 card_system = CardSystem(db)
 bonus_system = BonusSystem(db)
 
+WEBHOOK_HOST = 'PehenyshkaCookie.pythonanywhere.com' 
+WEBHOOK_PATH = '/webhook'
+
+app = Flask(__name__)
+
+@app.route(WEBHOOK_PATH, methods=['POST'])
+def webhook():
+    if request.headers.get('content-type') == 'application/json':
+        json_string = request.get_data().decode('utf-8')
+        update = telebot.types.Update.de_json(json_string)
+        bot.process_new_updates([update])
+        return 'OK'
+    else:
+        return 'Bad Request', 403
+
 # Команды бота
 @bot.message_handler(commands=['start'])
 def start_command(message):
@@ -403,10 +418,11 @@ def escape_markdown(text):
 
 if __name__ == "__main__":
 
-    print("🤖 Бот запущен!")
-    print("📚 База данных инициализирована")
-    print("⏰ Планировщик запущен")
-    print("🎴 Система карточек готова")
+    app.run() 
+    # print("🤖 Бот запущен!")
+    # print("📚 База данных инициализирована")
+    # print("⏰ Планировщик запущен")
+    # print("🎴 Система карточек готова")
 
-	#Запуск бота
-    bot.infinity_polling(none_stop=True)
+	# #Запуск бота
+    # bot.infinity_polling(none_stop=True)
